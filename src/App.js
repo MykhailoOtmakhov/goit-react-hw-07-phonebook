@@ -6,8 +6,15 @@ import { CSSTransition } from 'react-transition-group'
 import './App.css'
 import Header from './components/Header/Header.js';
 import { connect } from 'react-redux';
+import contactsOperations from './redux/contacts-operations';
+import contactsSelectors from './redux/contacts-selectors'
 
 class App extends Component {  
+
+  componentDidMount(){
+    this.props.fetchContact()
+  }
+  
   render() {
     return(
       <div>
@@ -32,8 +39,13 @@ class App extends Component {
   }
 }
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = state => ({
   contacts: state.contacts.items,
+  isLoadingContacts: contactsSelectors.getLoading(state),
 })
 
-export default connect(mapStateToProps, null)(App)
+const mapDispatchToProps = dispatch => ({
+  fetchContact: () => dispatch(contactsOperations.fetchContact())
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(App)

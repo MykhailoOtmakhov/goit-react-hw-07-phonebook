@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import styles from './ContactForm.module.css';
 import { connect } from 'react-redux';
-import contactsActions from '../../redux/contacts-actions'
+import contactsOperation from '../../redux/contacts-operations'
 import Notification from '../Notification/Notification'
 import { CSSTransition } from 'react-transition-group'
 
@@ -111,7 +111,7 @@ const mapStateToProps = (state) => ({
 })
 
 const mapDispatchToProps = dispatch => ({
-  onSubmit: ({name,number,message}) => dispatch(contactsActions.addContact(name,number,message))
+  onSubmit: ({name,number,message}) => dispatch(contactsOperation.addContact(name,number,message))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(ContactForm)

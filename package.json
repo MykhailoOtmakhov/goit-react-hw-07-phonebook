@@ -2,13 +2,15 @@
   "name": "goit-react-hw-07-phonebook",
   "version": "0.1.0",
   "private": true,
-  "homepage": "http://MykhailoOtmakhov.github.io/goit-react-hw-07-phonebook/",
+  "homepage": "https://MykhailoOtmakhov.github.io/goit-react-hw-07-phonebook",
   "dependencies": {
     "@reduxjs/toolkit": "^1.5.0",
     "@testing-library/jest-dom": "^5.11.9",
     "@testing-library/react": "^11.2.3",
     "@testing-library/user-event": "^12.6.0",
+    "axios": "^0.21.1",
     "install": "^0.13.0",
+    "json-server": "^0.16.3",
     "npm": "^7.5.6",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
@@ -17,6 +19,7 @@
     "react-transition-group": "^4.4.1",
     "redux-logger": "^3.0.6",
     "redux-persist": "^6.0.0",
+    "reselect": "^4.0.0",
     "uuid": "^8.3.2",
     "web-vitals": "^0.2.4"
   },
@@ -26,7 +29,8 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "deploy": "gh-pages -d build",
-    "predeploy": "npm run build"
+    "predeploy": "npm run build",
+    "api-server": "json-server --port 4040 --delay 300 --watch db.json"
   },
   "repository": {
     "type": "git",

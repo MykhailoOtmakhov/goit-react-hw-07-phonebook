@@ -4,7 +4,9 @@ import PropTypes from 'prop-types'
 import { CSSTransition, TransitionGroup } from 'react-transition-group'
 import styles from './Contacts.module.css'
 import { connect } from 'react-redux';
-import contactsActions from '../../redux/contacts-actions'
+import contactsOperations from '../../redux/contacts-operations'
+import * as contactsActions from '../../redux/contacts-actions'
+import contactsSelectors from '../../redux/contacts-selectors'
 
 const Contacts = ({contacts,onRemoveContact,clearFilter}) => {
     
@@ -42,20 +44,12 @@ Contacts.propTypes={
     number:PropTypes.string,
 }
 
-const getVisibleContacts=(allContacts, filter) => {
-  const normalizedFilter = filter.toLowerCase();
-
-  return allContacts.filter(({name})=>
-    name.toLowerCase().includes(normalizedFilter),
-  )
-}
-
-const mapStateToProps =({ contacts: { items, filter } })=> ({
-    contacts: getVisibleContacts(items, filter),
+const mapStateToProps =(state)=> ({
+    contacts: contactsSelectors.getVisibleContacts(state),
 })
 
 const mapDispatchToProps = dispatch => ({
-    onRemoveContact: (id) => dispatch(contactsActions.removeContact(id)),
+    onRemoveContact: (id) => dispatch(contactsOperations.removeContact(id)),
     clearFilter:() => dispatch(contactsActions.changeFilter(''))
 })
 
